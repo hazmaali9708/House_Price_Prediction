@@ -1,0 +1,24 @@
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Generated model artifacts (regenerate with: python train_model.py)
+models/
+
+# Generated EDA/evaluation plots (regenerate with: python train_model.py)
+images/
+
+# Streamlit
+.streamlit/
+
+# OS / Editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
