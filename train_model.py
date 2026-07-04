@@ -57,7 +57,7 @@ os.makedirs(IMAGES_DIR, exist_ok=True)
 # --------------------------------------------------------------------------
 def load_data(path: str) -> pd.DataFrame:
     print("\n[1/8] Loading data...")
-    df = pd.read_csv(r"C:\Users\Hamaz Ali\OneDrive\Desktop\house price prididtion\datsets\house_data.csv")
+    df = pd.read_csv(path)
     # drop stray index column saved from a previous pandas export, if present
     unnamed_cols = [c for c in df.columns if c.lower().startswith("unnamed")]
     if unnamed_cols:
@@ -307,7 +307,6 @@ def main():
 
     # Pick the best model by R2
     best_name = results_df["R2"].idxmax()
-    best_model = models[best_name]
     print(f"\n>>> Best model: {best_name} (R2 = {results_df.loc[best_name, 'R2']:.4f})")
 
     # Save all artifacts needed by the Streamlit app
@@ -324,4 +323,4 @@ def main():
 
 
 if __name__ == "__main__":
- main()
+    main()
