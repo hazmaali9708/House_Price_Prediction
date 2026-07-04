@@ -39,6 +39,16 @@ def load_artifacts():
         "feature_names.pkl", "zip_codes.pkl", "best_model_name.pkl",
     ]
     missing = [f for f in required if not os.path.exists(os.path.join(MODELS_DIR, f))]
+
+    # If models haven't been trained yet (e.g. fresh deployment where the
+    # models/ folder wasn't uploaded), train them once automatically instead
+    # of requiring the user to upload large .pkl files to GitHub.
+    if missing:
+        with st.spinner("First-time setup: training models (this happens once)..."):
+            import train_model
+            train_model.main()
+        missing = [f for f in required if not os.path.exists(os.path.join(MODELS_DIR, f))]
+
     if missing:
         return None
 
@@ -205,4 +215,3 @@ with tab3:
             st.image(p, caption="Random Forest Feature Importance", use_container_width=True)
 
 st.markdown("---")
-st.caption("AlgoHub Software House • Machine Learning Internship Program • Week 1 Project")
